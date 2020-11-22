@@ -21,3 +21,6 @@ So I had everything I needed. I copied the link to my database and put in in the
 Once it was done, I developped the app using methods I had seen last year and this year.
 I added a app.get, to get every movie from the database, a app.post, that will put movies to the database. Once I had both of them, I checked that everything worked properly.
 With that done, I added app.put, to edit a movie, and app.delete, to delete a movie from the database. I, once more, checked that everything worked, and with that done, i was satisfied by my work.
+However, i wanted to add something. I wanted my app to get another feature.
+I thought of addind an url foreach movie we have in the DB.
+When you enter http://localhost:3000/movie/ and add the ID of whichever movie you want, you get its information for this movie. Of course, the movie must be in the database.

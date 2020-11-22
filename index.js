@@ -27,6 +27,20 @@ const client = MongoClient.connect(url, { useUnifiedTopology: true }, (err, clie
         }
     })
     
+    // We get one movie when we get to its ID url
+    app.get("/movie/:id", async ({params: {id}}, res) => {
+        try{
+            // we get and display the movie we want by finding its ID
+            let movie = await db.collection('movie').findOne({_id: ObjectID(id)});
+            res.send(movie)
+        }
+        catch(e){ 
+            // If there's an error, we display it.
+            res.send({type: "error", message: "Error, the ID of the film doesn't exist."})
+        }
+    })
+    
+
     // Here, we post the movie in the database.
     app.post("/movie", async ({body: {name, duration, released}}, res) => {
         try{
@@ -37,7 +51,7 @@ const client = MongoClient.connect(url, { useUnifiedTopology: true }, (err, clie
             } 
             // If not, we put an Error
             else {
-                res.sned({type: "error", message: "Error, name must be a string, duration a number and released, a boolean"})
+                res.send({type: "error", message: "Error, name must be a string, duration a number and released, a boolean"})
             }
         }catch(e){
             res.send({type: "error", message: "Error"})
